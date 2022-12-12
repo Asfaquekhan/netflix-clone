@@ -24,18 +24,28 @@ const handlelogout= async()=>{
         </h1>
       </Link>
       {user?.email ? (
-        <div>
+        
+        <div className="flex items-center">
+          
+          <input type="text" name="" id="" className="bg-white rounded mr-4 text-black"/>
+          <button className="mr-4 bg-blue-500 px-3 py-1 rounded cursor-pointer">Search</button>
+          
+        
           <Link to="/login">
             <button className="pr-4">Account</button>
           </Link>
          
-            <button className="bg-red-600 px-6 py-2 rounded cursor-pointer" onClick={handlelogout}>
+            <button className="bg-red-600 px-4 py-1 rounded cursor-pointer" onClick={handlelogout}>
              Log Out
             </button>
          
         </div>
       ) : (
         <div>
+          <div>
+          <input type="text" name="" id="" className="bg-white"/>
+          <button>sumbit</button>
+          </div>
           <Link to="/login">
             <button className="pr-4">Sign In</button>
           </Link>

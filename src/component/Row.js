@@ -1,14 +1,14 @@
-import { data } from "autoprefixer";
+
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import {MdChevronLeft,MdChevronRight} from 'react-icons/md'
 import { Link } from "react-router-dom";
-import MoviePage from "../pages/MoviePage";
+
 
 
 export default function Row({ title, fetchURL, rowID}) {
   const [movies, setMovies] = useState([]);
- 
+ const idKey =useId()
   useEffect(() => {
     axios.get(fetchURL).then((res) => setMovies(res.data.results));
   }, [fetchURL]);
@@ -30,9 +30,8 @@ export default function Row({ title, fetchURL, rowID}) {
           {movies.map((items) => {
             return (
               <Link to="movie">
-              <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2" key={items.id} onClick={()=>{
-               <MoviePage text="hello"/>
-                // await data()
+              <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2" key={idKey} onClick={()=>{
+              console.log(items.id)
                 }}>
                 <img
                   className="w-full h-auto block"

@@ -7,6 +7,7 @@ import Account from './pages/Account';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import MoviePage from './pages/MoviePage';
+
 import Signup from './pages/Signup';
 
 
@@ -17,6 +18,7 @@ function App() {
      
     <div className="">
      <Navbar/>
+     
      <Routes>
       <Route path='/' element={ <Home/>}/>
       <Route path="/login" element={<Login/>}/>

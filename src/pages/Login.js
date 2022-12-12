@@ -15,6 +15,7 @@ export default function Login() {
       console.log(error);
     }
   };
+  console.log(user)
   return (
     <div className="w-full h-screen">
       <img

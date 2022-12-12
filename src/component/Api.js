@@ -6,7 +6,7 @@ const api={
     toprated:`https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`,
     Tranding:`https://api.themoviedb.org/3/trending/all/day?api_key=${key}`,
     Tv:`https://api.themoviedb.org/3/tv/{tv_id}/season/{season_number}?api_key=${key}&language=en-US`,
-    genres:`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`
-
+    genres:`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`,
+    search:`https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=spider%20man&page=1&include_adult=false`
 }
 export default api
