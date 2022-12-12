@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function MoviePage(props) {
+  console.log("props ", props.text)
   const [movie, setmovie] = useState();
   const [recomendation, setRecomendation] = useState();
 
@@ -33,6 +34,7 @@ export default function MoviePage(props) {
   console.log(recomendation);
   return (
     <div>
+      <h1>{props.text}</h1>
       <img
         className=" "
         src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}

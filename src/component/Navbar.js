@@ -1,20 +1,21 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "./context/Auth";
+import { auth } from "./firebase";
 
 export default function Navbar() {
   const { user, logOut } = UserAuth();
   const navigate =useNavigate()
 const handlelogout= async()=>{
   try{
-    await logOut()
+    await logOut(auth)
     navigate('/')
   }catch(error){
  console.log(error)
   }
  
 }
-console.log(user.email)
+
   return (
     <div className="flex items-center justify-between p-4 z-50 sticky top-0">
       <Link to="/">

@@ -1,7 +1,9 @@
+import { data } from "autoprefixer";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {MdChevronLeft,MdChevronRight} from 'react-icons/md'
 import { Link } from "react-router-dom";
+import MoviePage from "../pages/MoviePage";
 
 
 export default function Row({ title, fetchURL, rowID}) {
@@ -28,7 +30,10 @@ export default function Row({ title, fetchURL, rowID}) {
           {movies.map((items) => {
             return (
               <Link to="movie">
-              <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2" key={items.id} onClick={()=>{console.log(items.id)}}>
+              <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2" key={items.id} onClick={()=>{
+               <MoviePage text="hello"/>
+                // await data()
+                }}>
                 <img
                   className="w-full h-auto block"
                   
