@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/context/Auth";
-import { useNavigate } from "react-router-dom";
+
 
 export default function MoviePage(props) {
   const [movie, setMovie] = useState();
   const [removie, setRemovie] = useState();
   const { data } = UserAuth();
-  const navigate = useNavigate();
-  const movieApi = (id) => {
+ 
+  console.log(data)
+  const movieApi =useCallback((id) => {
+    
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${
@@ -20,8 +22,8 @@ export default function MoviePage(props) {
       top: 0,
       behavior: "smooth",
     });
-  };
-  const recomendation = (id) => {
+  },[data])
+  const recomendation = useCallback((id) => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${
@@ -30,14 +32,14 @@ export default function MoviePage(props) {
       )
       .then((res) => setRemovie(res.data.results))
       .catch((error) => console.log(error));
-  };
+  },[data])
 
   useEffect(() => {
     console.log("its from useffect");
     movieApi();
     recomendation();
-    navigate("/movie");
-  }, []);
+   
+  }, [movieApi,recomendation]);
   return (
     <div>
       <h1>{props.text}</h1>
@@ -70,7 +72,7 @@ export default function MoviePage(props) {
               onClick={() => {
                 movieApi(curr.id);
                 recomendation(curr.id);
-                console.log(curr.id);
+               
               }}
             />
           );
