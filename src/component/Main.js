@@ -31,7 +31,7 @@ export default function Main() {
             alt={movies?.title}
           />
         </div>
-        <div className="absolute w-full top-[30%] p-4 md:p-8 ">
+        <div className="md:absolute w-full top-[40%] p-4 md:p-8 ">
           <h2 className="text-3xl md:text-5xl font-bold ">{movies?.title}</h2>
           <div className="py-5 flex items-center">
             <button className="border bg-gray-300 text-black border-gray-300 py-2 px-5 flex items-center font-bold">
@@ -47,7 +47,7 @@ export default function Main() {
          
         </div>
       </div>
-      <p className=" md:w-2/5 text-gray-200 font-bold p-2">
+      <p className=" md:w-2/5 text-gray-200 font-bold p-4">
             {read(movies?.overview)}
           </p>
     </div>
