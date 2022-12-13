@@ -41,15 +41,15 @@ export default function MoviePage(props) {
    
   }, [movieApi,recomendation]);
   return (
-    <div>
+    <div className="">
       
       <img
         className=" "
         src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
         alt=""
       />
-      <div className="md:absolute md:top-[11.5%]  md:w-1/2 md:h-screen  bg-gradient-to-r from-black  ">
-        <div className="py-20 p-5 space-y-8">
+      <div className="md:absolute md:top-[11.5%]  md:w-1/2 md:h-[770px]  bg-gradient-to-r from-black  ">
+        <div className="md:py-20 p-5 md;space-y-8 space-y-5">
           <h2 className="font-bold text-2xl  leading-8">{movie?.title}</h2>
           <div className="flex space-x-6 text-slate-400 font-bold">
             <p>{movie?.release_date.slice(0, 4)}</p>
@@ -57,10 +57,10 @@ export default function MoviePage(props) {
               return <p key={id}>{curr.name}</p>;
             })}
           </div>
-          <p className="w-full">{movie?.overview}</p>
+          <p className="w-full md:w-4/5">{movie?.overview}</p>
         </div>
       </div>
-      <h2 className="text-2xl text-center">More Like This</h2>
+      <h2 className="text-2xl text-center py-5">More Like This</h2>
       <div className="max-w-[850px] p-5 mx-auto grid grid-cols-2 md:grid-cols-3  gap-x-2 gap-y-2">
         {removie?.map((curr) => {
           return (
