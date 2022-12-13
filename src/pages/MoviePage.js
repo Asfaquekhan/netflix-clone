@@ -42,16 +42,16 @@ export default function MoviePage(props) {
   }, [movieApi,recomendation]);
   return (
     <div>
-      <h1>{props.text}</h1>
+      
       <img
         className=" "
         src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
         alt=""
       />
-      <div className="md:absolute md:top-[11.5%]  md:w-1/2 md:h-screen  space-y-4 bg-gradient-to-r from-black  ">
-        <div className="py-20 p-5">
-          <h2 className="font-[24px]  leading-8">{movie?.title}</h2>
-          <div className="flex space-x-6 text-gray-200">
+      <div className="md:absolute md:top-[11.5%]  md:w-1/2 md:h-screen  bg-gradient-to-r from-black  ">
+        <div className="py-20 p-5 space-y-8">
+          <h2 className="font-bold text-2xl  leading-8">{movie?.title}</h2>
+          <div className="flex space-x-6 text-slate-400 font-bold">
             <p>{movie?.release_date.slice(0, 4)}</p>
             {movie?.genres?.map((curr, id) => {
               return <p key={id}>{curr.name}</p>;
