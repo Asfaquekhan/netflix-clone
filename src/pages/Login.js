@@ -4,18 +4,19 @@ import { UserAuth } from "../component/context/Auth";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, singUp } = UserAuth();
+  const {  login } = UserAuth();
+  const [error,seterror]=useState()
   const navigate =useNavigate()
-  const handleSumbit = (e) => {
+  const handleSumbit = async (e) => {
     e.preventDefault();
     try {
-      singUp(email, password);
+     await login(email, password);
       navigate('/')
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      seterror(JSON.parse(JSON.stringify(err)))
     }
   };
-  console.log(user)
+  console.log("error",error)
   return (
     <div className="w-full h-screen">
       <img
@@ -27,7 +28,8 @@ export default function Login() {
       <div className="fixed w-full px-4 py-20 z-50">
         <div className="max-w-[450px] h-[400px] mx-auto bg-black/75 ">
           <div className="max-w-[320px] mx-auto py-5">
-            <h1 className="text-3xl font-bold">Sign In</h1>
+            <h1 className="text-3xl font-bold">Log In</h1>
+            {error? <p className="bg-red-500 text-center rounded p-1 my-3">{error.code}</p>:null}
             <form className="w-full flex flex-col py-4" onSubmit={handleSumbit}>
               <input
                 className="p-3 my-2 bg-gray-600 rounded"
@@ -46,7 +48,7 @@ export default function Login() {
                 onChange={(e)=>setPassword(e.target.value)}
               />
               <button className="bg-red-600 py-3 my-6 rounded font-bold" onClick={handleSumbit}>
-                Sign In
+                Log In
               </button>
               <div className="flex justify-between items-center">
                 <p>

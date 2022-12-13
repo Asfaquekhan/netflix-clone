@@ -2,7 +2,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './component/context/Auth';
+import Footer from './component/Footer';
 import Navbar from './component/Navbar';
+import Protect from './component/Protect';
 import Account from './pages/Account';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -23,9 +25,10 @@ function App() {
       <Route path='/' element={ <Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
-      <Route path="/signup" element={<Account/>}/>
+      <Route path="/account" element={<Protect><Account/></Protect>}/>
       <Route path="/movie" element={<MoviePage/>}/>
      </Routes>
+     <Footer/>
      </div>
     </AuthProvider>
     </>

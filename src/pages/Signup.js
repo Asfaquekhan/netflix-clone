@@ -1,7 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../component/context/Auth";
 export default function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, singUp } = UserAuth();
+
+  const navigate = useNavigate();
+  const handleSumbit = async (e) => {
+    e.preventDefault();
+    try {
+      await singUp(email, password);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(user)
   return (
     <div className="w-full h-screen">
       <img
@@ -14,21 +29,43 @@ export default function Signup() {
         <div className="max-w-[450px] h-[400px] mx-auto bg-black/75 ">
           <div className="max-w-[320px] mx-auto py-5">
             <h1 className="text-3xl font-bold">Sign up</h1>
-  <form className="w-full flex flex-col py-4">
-    <input className="p-3 my-2 bg-gray-600 rounded" type="email" name="" id="" placeholder="email"/>
-    <input  className="p-3 my-2 bg-gray-600 rounded" type="password" name="" id="" placeholder="password" />
-    <button className="bg-red-600 py-3 my-6 rounded font-bold">Sign up</button>
-    <div className="flex justify-between items-center">
-        <p ><input className="mr-2" type="checkbox" name="" id="" />Remember me
-    </p>
-    <p>Need Help</p>
-   
-    </div>
-    <Link to="/login">
-    <p className="my-4 "><span className="text-gray-600 mr-2">Already Subscribed to Netflix</span>
-    Sign In</p>
-    </Link>
-  </form>
+            <form className="w-full flex flex-col py-4" onSubmit={handleSumbit}>
+              <input
+                className="p-3 my-2 bg-gray-600 rounded"
+                type="email"
+                name=""
+                placeholder="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                className="p-3 my-2 bg-gray-600 rounded"
+                type="password"
+                name=""
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                className="bg-red-600 py-3 my-6 rounded font-bold"
+                onClick={handleSumbit}
+              >
+                Sign up
+              </button>
+              <div className="flex justify-between items-center">
+                <p>
+                  <input className="mr-2" type="checkbox" name="" id="" />
+                  Remember me
+                </p>
+                <p>Need Help</p>
+              </div>
+              <Link to="/login">
+                <p className="my-4 ">
+                  <span className="text-gray-600 mr-2">
+                    Already Subscribed to Netflix
+                  </span>
+                  Sign In
+                </p>
+              </Link>
+            </form>
           </div>
         </div>
       </div>
