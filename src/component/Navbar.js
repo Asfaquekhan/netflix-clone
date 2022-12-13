@@ -17,7 +17,7 @@ const handlelogout= async()=>{
 }
 
   return (
-    <div className="flex items-center justify-between p-4 z-50 sticky top-0">
+    <div className="flex items-center justify-between p-4 z-50 sticky top-0 bg-black">
       <Link to="/">
         <h1 className="text-red-600 text-4xl font-bold cursor-pointer">
           NETFLIX

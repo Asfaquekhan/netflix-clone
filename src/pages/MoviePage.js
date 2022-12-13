@@ -1,37 +1,43 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/context/Auth";
 import { useNavigate } from "react-router-dom";
 
 export default function MoviePage(props) {
-  const [movie,setMovie]=useState()
-  const [removie,setRemovie]=useState()
+  const [movie, setMovie] = useState();
+  const [removie, setRemovie] = useState();
   const { data } = UserAuth();
-  const navigate=useNavigate()
-  const movieApi=(id)=>{
-    console.log(id)
+  const navigate = useNavigate();
+  const movieApi = (id) => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id?id:data}?api_key=64ff6c5098cdafbe0dcb9398d4334f83&language=en-US`
+        `https://api.themoviedb.org/3/movie/${
+          id ? id : data
+        }?api_key=64ff6c5098cdafbe0dcb9398d4334f83&language=en-US`
       )
       .then((res) => setMovie(res.data));
-  }
-  const recomendation=(id)=>{
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const recomendation = (id) => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id?id:data}/similar?api_key=64ff6c5098cdafbe0dcb9398d4334f83&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/${
+          id ? id : data
+        }/similar?api_key=64ff6c5098cdafbe0dcb9398d4334f83&language=en-US&page=1`
       )
       .then((res) => setRemovie(res.data.results))
       .catch((error) => console.log(error));
-  }
-  
-useEffect(()=>{
+  };
 
-  
-  movieApi()
-  recomendation()
-  navigate('/movie')
-},[])
+  useEffect(() => {
+    console.log("its from useffect");
+    movieApi();
+    recomendation();
+    navigate("/movie");
+  }, []);
   return (
     <div>
       <h1>{props.text}</h1>
@@ -40,7 +46,7 @@ useEffect(()=>{
         src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
         alt=""
       />
-      <div className="md:absolute md:top-[11.5%]  w-1/2 h-screen  space-y-4 bg-gradient-to-r from-black  ">
+      <div className="md:absolute md:top-[11.5%]  md:w-1/2 md:h-screen  space-y-4 bg-gradient-to-r from-black  ">
         <div className="py-20 p-5">
           <h2 className="font-[24px]  leading-8">{movie?.title}</h2>
           <div className="flex space-x-6 text-gray-200">
@@ -57,13 +63,14 @@ useEffect(()=>{
         {removie?.map((curr) => {
           return (
             <img
+              key={curr.id}
               src={`https://image.tmdb.org/t/p/original/${curr?.poster_path}`}
               alt=""
               width={250}
               onClick={() => {
-                movieApi(curr.id)
+                movieApi(curr.id);
                 recomendation(curr.id);
-                console.log(curr.id)
+                console.log(curr.id);
               }}
             />
           );

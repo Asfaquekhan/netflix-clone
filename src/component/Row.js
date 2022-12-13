@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { UserAuth } from "./context/Auth";
@@ -8,7 +8,7 @@ export default function Row({ title, fetchURL, rowID }) {
   const [movies, setMovies] = useState([]);
   const {recomend}=UserAuth()
 
-  const idKey = useId();
+ 
   useEffect(() => {
     axios.get(fetchURL).then((res) => setMovies(res.data.results));
   }, [fetchURL]);
@@ -35,26 +35,32 @@ export default function Row({ title, fetchURL, rowID }) {
         >
           {movies.map((items) => {
             return (
-              <Link to="movie">
+             
                 <div
                   className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
-                  key={idKey}
+                  key={items.id}
                   onClick={() => {
                     recomend(items.id)
                   }}
                 >
+                   
                   <img
                     className="w-full h-auto block"
                     src={`https://image.tmdb.org/t/p/w500/${items?.backdrop_path}`}
+                    
                     alt={items?.title}
+                    loading='lazy'
                   />
+                  
+                   <Link to="/movie">
                   <div className=" absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white ">
                     <p className="white-space-normal font-bold flex justify-center items-center h-full text-center ">
                       {items?.title}
                     </p>
                   </div>
+                  </Link>
                 </div>
-              </Link>
+             
             );
           })}
         </div>
