@@ -2,13 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { UserAuth } from "../component/context/Auth";
 import { RxDividerVertical } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 export default function MoviePage(props) {
   const [movie, setMovie] = useState();
   const [removie, setRemovie] = useState();
   const { data } = UserAuth();
+  const navigate = useNavigate();
 
-  console.log(data);
   const movieApi = useCallback(
     (id) => {
       axios
@@ -22,8 +23,9 @@ export default function MoviePage(props) {
         top: 0,
         behavior: "smooth",
       });
+      navigate("/movie");
     },
-    [data]
+    [data, navigate]
   );
   const recomendation = useCallback(
     (id) => {
@@ -40,17 +42,15 @@ export default function MoviePage(props) {
   );
 
   useEffect(() => {
-    console.log("its from useffect");
     movieApi();
     recomendation();
-  }, [movieApi, recomendation]);
-  console.log(movie);
+  }, [movieApi, recomendation, navigate]);
+
   const runtime = (num) => {
     let hours = num / 60;
     let rhours = Math.floor(hours);
     let minutes = (hours - rhours) * 60;
     let rminutes = Math.round(minutes);
-    console.log(rhours);
 
     return `${rhours}h${rminutes}m`;
   };
@@ -71,28 +71,28 @@ export default function MoviePage(props) {
             </p>
             <p>{runtime(movie?.runtime)}</p>
           </div>
-          <div className="flex  text-slate-400 font-bold items-center overflow-clip">
-          {(movie?.adult)?(<p>18+</p>):(<p>NA</p>)}
-            {movie?.genres?.map((curr, id) => {
+          <div className="flex flex-wrap text-slate-400 font-bold items-center ">
+            {movie?.adult ? <p>18+</p> : <p>NA</p>}
+            {movie?.genres?.map((curr) => {
               return (
-                <div className="flex items-center">
-                 
-                 
+                <div className="flex items-center" key={curr.id}>
                   <p className="m-2">
                     <RxDividerVertical />
                   </p>
-                  <p key={id}>{curr.name}</p>
+                  <p>{curr.name}</p>
                 </div>
               );
             })}
           </div>
-          
+
           <p className="w-full md:w-4/5">{movie?.overview}</p>
-          <div className="flex  text-slate-400 font-bold items-center space-x-3" >
-            {movie?.spoken_languages.map((curr)=>{
-              return <div>
-                <p>{curr.english_name}</p>
-              </div>
+          <div className="flex  text-slate-400 font-bold items-center space-x-3">
+            {movie?.spoken_languages.map((curr) => {
+              return (
+                <div key={curr.id}>
+                  <p>{curr.english_name}</p>
+                </div>
+              );
             })}
           </div>
         </div>

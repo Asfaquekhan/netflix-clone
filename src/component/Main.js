@@ -20,7 +20,7 @@ export default function Main() {
       return str;
     }
   };
-  console.log(movies)
+ 
   return (
     <div className="w-full ">
       <div className=" w-full  bg-gradient-to-r from-black">

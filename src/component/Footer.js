@@ -3,7 +3,7 @@ import {BsGlobe} from 'react-icons/bs'
 export default function Footer() {
   return (
     <div>
-    <div className='h-80  grid grid-cols-2 p-5 m-5 md:grid-cols-4 py-10 text-slate-400  text-center '>
+    <div className='h-80  grid grid-cols-2 p-3  md:grid-cols-4 py-10 text-slate-400  '>
      
       <p>FAQ</p>
       <p>Investor Relations</p>
@@ -23,7 +23,7 @@ export default function Footer() {
     </div>
     <div className='flex justify-between'>
       
-    <img src="https://media.wired.com/photos/592682057034dc5f91bebab8/master/pass/NetflixLogo2016.jpg" alt="Netflix" width={100} className="mx-auto" />
+    <img src="https://media.wired.com/photos/592682057034dc5f91bebab8/master/pass/NetflixLogo2016.jpg" alt="Netflix" width={100} className="" />
     <button className='flex px-4 py-1 items-center'><BsGlobe className='mr-2'/>English</button>
     </div>
     </div>

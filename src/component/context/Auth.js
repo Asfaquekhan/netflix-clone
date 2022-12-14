@@ -12,6 +12,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setuser] = useState({});
+  const[category,setCategory]=useState()
   const [data, setdata] = useState(Number);
   function singUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
@@ -29,6 +30,9 @@ export function AuthProvider({ children }) {
   function recomend(item) {
     setdata(item);
   }
+  function byCategory(item) {
+    setCategory(item);
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (curr) => {
       setuser(curr);
@@ -39,7 +43,7 @@ export function AuthProvider({ children }) {
   });
   return (
     <AuthContext.Provider
-      value={{ singUp, login, logOut, user, recomend, data }}
+      value={{ singUp, login, logOut, user, recomend, data,byCategory ,category}}
     >
       {children}
     </AuthContext.Provider>
