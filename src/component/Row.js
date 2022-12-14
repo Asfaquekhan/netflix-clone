@@ -44,7 +44,7 @@ export default function Row({ title, fetchURL, rowID }) {
                 <Link to="/movie">
                   <div className="hover:">
                   <img
-                    className=""
+                    className="md:w-[200px] w-[150px] h-auto object-cover"
                     src={`https://image.tmdb.org/t/p/w500/${items?.poster_path}`}
                     alt={items?.title}
                     loading="lazy"
