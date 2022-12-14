@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "./context/Auth";
 import { auth } from "./firebase";
-
+import {BsSearch} from 'react-icons/bs'
 export default function Navbar() {
   const { user, logOut } = UserAuth();
+  const [search,setSearch]=useState(false)
   const navigate =useNavigate()
 const handlelogout= async()=>{
   try{
@@ -15,7 +16,7 @@ const handlelogout= async()=>{
   }
  
 }
-
+console.log(search)
   return (
     <div className="flex items-center justify-between p-4 z-50 sticky top-0 bg-black">
       <Link to="/">
@@ -27,7 +28,7 @@ const handlelogout= async()=>{
         
         <div className="flex items-center">
           
-        
+        <BsSearch className="mr-4" onClick={()=>{setSearch(true)}}/>
         
           <Link to="/login">
             <button className="pr-4">Account</button>
