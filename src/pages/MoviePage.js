@@ -23,9 +23,9 @@ export default function MoviePage(props) {
         top: 0,
         behavior: "smooth",
       });
-      navigate("/movie");
+     
     },
-    [data, navigate]
+    [data]
   );
   const recomendation = useCallback(
     (id) => {

@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 export default function List() {
   const [movie, setRemovie] = useState();
   const { category, recomend } = UserAuth();
- 
+ console.log(category)
   const navigate=useNavigate()
   const moveBy = () => {
-navigate('/movie')
+navigate(`/movie/${category.name}`)
   };
   const data = useCallback(() => {
     axios

@@ -16,7 +16,7 @@ export default function Footer() {
       <p>Account</p>
       <p>Ways to watch</p>
       <p>Corporate Information</p>
-      <p>Omly on Netflix</p>
+      <p>Only on Netflix</p>
       <p>Media Centre</p>
       <p>Terms of Use</p>
       <p>Contact Us</p>

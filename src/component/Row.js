@@ -41,7 +41,7 @@ export default function Row({ title, fetchURL, rowID }) {
                   recomend(items.id);
                 }}
               >
-                <Link to="/movie">
+                <Link to={`/movie/${items.title}`}>
                   <div className="hover:">
                   <img
                     className="md:w-[200px] w-[150px] h-auto object-cover"

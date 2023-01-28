@@ -31,7 +31,7 @@ function App() {
                 </Protect>
               }
             />
-            <Route path="/movie" element={<MoviePage />} />
+            <Route path="/movie/:id" element={<MoviePage />} />
             <Route path="/search" element={<Search />} />
             <Route path="/list" element={<List />} />
           </Routes>
