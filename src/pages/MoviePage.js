@@ -42,8 +42,9 @@ export default function MoviePage(props) {
   );
 
   useEffect(() => {
-    movieApi();
-    recomendation();
+    const id = window.location.pathname.split('/')[2]
+    movieApi(id);
+    recomendation(id);
   }, [movieApi, recomendation, navigate]);
 
   const runtime = (num) => {
